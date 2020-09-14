@@ -9,6 +9,7 @@
 const table = document.getElementById('table');
 
 // Iteration 1 using callbacks
+const addSteak =
 addFood(steak[0], '#steak', () => {
   addFood(steak[1], '#steak', () => {
     addFood(steak[2], '#steak', () => {
@@ -30,6 +31,7 @@ addFood(steak[0], '#steak', () => {
 
 
 // Iteration 2 using `.then()`
+const addMash =
 addFood(mashPotatoes[0], '#mashPotatoes').then(() => {
   addFood(mashPotatoes[1], '#mashPotatoes').then(() => {
     addFood(mashPotatoes[2], '#mashPotatoes').then(() => {
@@ -50,8 +52,22 @@ async function makeFood(step) {
    }
    table.innerHTML += `<img src="./public/images/brusselSprouts.jpg" alt="brusselSprouts">`;
 }
-makeFood(brusselSprouts);
+const addBrussProut = makeFood(brusselSprouts);
 
 
+
+//bonus 2 :
+const body = document.querySelector("body");
+const sound = new Audio ("./public/media/dinnerIsServed.mp3");
+
+ function dinnerIsServed () {
+   body.innerHTML += `<button>Dinner is Served !</button>`;
+   const btn = document.querySelector("button");
+  btn.onclick = () => {
+  sound.play();
+ };
+ }
+
+Promise.all([addSteak, addMash, addBrussProut]).then(dinnerIsServed);
 
 
